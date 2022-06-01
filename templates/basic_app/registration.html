@@ -1,0 +1,24 @@
+{% extends 'basic_app/base.html' %}
+{% load static %}
+{% comment %} to load the staticfiles if any on the page {% endcomment %}
+{% block body_block %}
+    <div class="container">
+        <div class= 'jumbotron'>
+            {% if regisetered %}
+            <h1>Thanks for registering!</h1>
+            {% else %}
+            <h1>Register Here!</h1>
+            <h3>fill the form here:</h3>
+            <form  enctype ="multiapart/form-data" method = 'post'>
+                {% comment %} we put enctype ="multiapart/form-data" because it will make the media file be uploaded{% endcomment %}
+                {% csrf_token %}
+                {{user_form.as_p}}
+                {{profile_form.as_p}}
+                <input type="submit" value ='Register'>
+            </form>
+
+
+            {% endif %}
+        </div>
+    </div>
+{% endblock body_block %}
